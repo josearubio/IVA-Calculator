@@ -1,0 +1,45 @@
+<div class="container">
+  <div ng-show="$ctrl.on">
+        <form name="addForm" novalidate>
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" class="form-control" placeholder="Nombre del canal" name="name" ng-model="$ctrl.formData.name" required
+            ng-class="{ error: !addForm.name.$pristine && addForm.name.$error.required}">
+            <div class="alert alert-warning" ng-show="!addForm.name.$pristine && addForm.name.$error.required">El nombre es obligatorio.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Descripcion:</label>
+            <input type="text" class="form-control" placeholder="Breve descripción" name="description" ng-model="$ctrl.formData.description" required
+            ng-class="{ error: !addForm.description.$pristine && addForm.description.$error.required}">
+            <div class="alert alert-warning"  ng-show="!addForm.description.$pristine && addForm.description.$error.required">La descripción es obligatoria.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" placeholder="ej: telegram.me/micanal" name="url" ng-model="$ctrl.formData.url" required
+            ng-class="{ error: !addForm.url.$pristine && addForm.url.$error.required}">
+            <div class="alert alert-warning"  ng-show="!addForm.url.$pristine && addForm.url.$error.required">La URL es obligatoria.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="sport">Deporte</label>
+            <input type="text" class="form-control" placeholder="ej: Fútbol" name="sport" ng-model="$ctrl.formData.sport" required
+            ng-class="{ error: !addForm.sport.$pristine && addForm.sport.$error.required}">
+            <div class="alert alert-warning"  ng-show="!addForm.sport.$pristine && addForm.sport.$error.required">El deporte es obligatorio.</div>
+          </div>
+
+          <div class="form-group">
+            				<input type="radio" ng-model="$ctrl.formData.pay" name="pay" id="pay_premium" value="premium" required>
+            				<label for="pay_premium">Premium</label><br>
+            				<input type="radio" ng-model="$ctrl.formData.pay" name="pay" id="pay_free" value="free" required>
+            				<label for="pay_free">Free</label>
+            		  	<div class="alert alert-warning"  ng-show="!addForm.pay.$pristine && addForm.pay.$error.required">Debes marcar una opción.</div>
+          </div>
+
+          <input type="submit" name="formsubmit" class="btn btn-success pull-right" ng-disabled="!addForm.$valid" ng-click="$ctrl.submitForm($ctrl.formData)" />
+          <span ng-show="!addForm.$valid">Revise los campos.</span>
+        </form>
+      </div>
+      <button type="button" class="btn btn-info" ng-show="!$ctrl.on" ng-click="$ctrl.showForm()">Añadir un canal a la lista </button>
+</div>

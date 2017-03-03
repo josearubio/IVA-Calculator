@@ -1,0 +1,84 @@
+<div class="container" align="center">
+      <div class="row" style="margin-top: 40px;" >
+        <div class="col-xs-12">
+            <div class="panel panel-info">
+              <div class="panel-heading"><h3>Calculadora IVA</h3></div>
+              <div class="panel-body">
+
+                <form name="calculatorForm" class="form-horizontal" novalidate>
+
+                  <div class="row" >
+                <div class="col-xs-12 col-md-8">
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" for="base">Concepto:</label>
+                    <div class="col-xs-5">
+                      <input type="textq" class="form-control" id="base" ng-model="ctrl.concept" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" for="base">Base:</label>
+                    <div class="col-xs-5">
+                      <input type="number" class="form-control" id="base" ng-keyup="ctrl.calculateTotal()" ng-model="ctrl.base" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" for="iva">IVA:</label>
+                    <div class="col-xs-5" align="left">
+                        <label id="iva">{{ctrl.iva}}</label><label>%</label></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" for="total">Total:</label>
+                    <div class="col-xs-5">
+                      <input type="number" class="form-control" id="total" ng-keyup="ctrl.calculateBase()" ng-model="ctrl.total" required>
+                    </div>
+                  </div>
+              </div>
+                  <div class="col-xs-12 col-xs-offset-3 col-md-4 col-md-offset-0">
+
+                    <div class="form-group" ng-init="ctrl.iva=21" align="left">
+                          <label class="control-label" for="tipoiva" >Tipo de IVA:</label>
+                            <div class="radio">
+                              <label><input type="radio" name="tipoiva" ng-model="ctrl.iva" value="4" id="tipoiva1" ng-change='ctrl.reCalculate(4)'>4%</label>
+                            </div>
+                            <div class="radio">
+                              <label><input type="radio" name="tipoiva" ng-model="ctrl.iva" value="10" id="tipoiva2" ng-change='ctrl.reCalculate(10)'>10%</label>
+                            </div>
+                            <div class="radio" >
+                              <label><input type="radio" name="tipoiva" ng-model="ctrl.iva" value="21" id="tipoiva3" ng-change='ctrl.reCalculate(21)'>21%</label>
+                            </div>
+
+                    </div>
+
+                  </div>
+            </div>
+            <button type="button" class="btn btn-info" ng-disabled="calculatorForm.$invalid" ng-click="ctrl.saveRegistry()">Guardar registro</button>
+
+                </form>
+
+        </div>
+      </div>
+
+      <table class="table table-striped">
+        <tr>
+           <th>Concepto</th>
+           <th>Base</th>
+           <th>IVA</th>
+           <th>Total</th>
+           <th></th>
+         </tr>
+         <tr ng-repeat="calculation in ctrl.registry">
+            <td>{{calculation.concept}}</td>
+            <td>{{calculation.base}}€</td>
+            <td>{{calculation.iva}}%</td>
+            <td>{{calculation.total}}€</td>
+            <td><button type="button" class="btn btn-danger btn-xs" ng-click="ctrl.deleteRegistry(calculation)">Borrar</button></td>
+         </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

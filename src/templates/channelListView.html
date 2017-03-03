@@ -1,0 +1,20 @@
+<div class="container-fluid">
+
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Deporte</th>
+            <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="channel in $ctrl.channels">
+            <td>{{ channel.name }}</td>
+            <td>{{ channel.sport }}</td>
+            <td><button type="button" class="btn btn-danger" ng-click="$ctrl.deleteChannel(channel.id)">Eliminar </button></td>
+         </tr>
+      </tbody>
+    </table></div>
+</div>
