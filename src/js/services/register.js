@@ -23,7 +23,13 @@
           var userData = {};
           userData.user = user;
           userData.pass = pass;
+					for (i = 0; i < users.length; i++) {
+							if (angular.equals(users[i].user, userData.user)) {
+									return false;
+							}
+					}
           users.push(userData);
+					return true;
         }
     };
 });
